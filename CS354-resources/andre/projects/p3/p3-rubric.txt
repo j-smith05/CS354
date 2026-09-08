@@ -1,0 +1,53 @@
+Grade: /70
+
+Rubric for Javascript project:
+
+Overall Comments:
+
+-Submission
+
+	- part1/
+	- part2/
+	- part3/
+    - a README.md file that has been completed
+
+Documentation:
+	-README.md:
+        -Reflection for Part 0 AI assisted code review [5 points]
+
+        -Reflection for Part 1 AI code port [5 points]
+
+        -Reflection for Part 2 Functional Closure Refactor [5 points]
+
+        -Reflection for Part 3 AI Assisted DB [5 points]
+
+
+Visual Checks:
+	- part1 [10 points]
+	    - ES6+ class syntax is used
+	    - Store's map is a private variable. walk() is implemented in json-walker.js
+	    - ESlint shows no errors or warnings
+
+    - part2 [10 points]
+        - store and json-walker use functional closures
+        - no ES6 class syntax is used
+        - No global state is modified
+	    - ESlint shows no errors or warnings
+
+    - part3 [15 points]
+        - json-walker uses async/await to read from the filesystem
+        - store now uses sqlite package and a backing database
+        - json-walker is updated to use addToStore with callback functions
+	    - ESlint shows no errors or warnings
+
+	-Other comments: 
+
+
+Automated Checks:
+	-run-tests.sh completes successfully in part1/: [5 points]
+
+	-run-tests.sh completes successfully in part2/: [5 points]
+
+	-run-tests.sh completes successfully in part3/: [5 points]
+
+    -Other comments:
