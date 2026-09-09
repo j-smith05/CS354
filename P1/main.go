@@ -1,3 +1,12 @@
+/*
+ * main.go
+ *
+ * Entry point for the banking application. Creates customers and
+ * accounts, adds the accounts to the bank, accrues interest, and
+ * displays the account information and total interest accrued.
+ * @author: Jacob Smith
+ */
+
 package main
 
 import (
@@ -8,6 +17,11 @@ import (
 	"p1/customer"
 )
 
+/**
+ * main is the entry point of the application. It creates a bank, customers,
+ * and accounts, adds the accounts to the bank, accrues interest, and prints
+ * the account information along with the total interest accrued.
+ */
 func main() {
 	b := bank.NewBank()
 
