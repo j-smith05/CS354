@@ -21,5 +21,6 @@ func main() {
 	totalInterest := b.Accrue(0.02)
 
 	fmt.Print(b.String())
+	fmt.Print("\n")
 	fmt.Printf("Total Interest: %.2f", totalInterest)
 }

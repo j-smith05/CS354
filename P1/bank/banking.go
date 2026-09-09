@@ -41,9 +41,12 @@ func (b *Bank) Accrue(rate float64) float64 {
 func (b *Bank) String() string {
 	var result strings.Builder
 
-	for _, a := range b.accounts {
+	for i, a := range b.accounts {
 		result.WriteString(a.String())
-		result.WriteString("\n")
+
+		if i < len(b.accounts)-1 {
+			result.WriteString("\n")
+		}
 	}
 
 	return result.String()
