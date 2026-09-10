@@ -6,11 +6,6 @@
 
 ## Overview
 
-Concisely explain what the program does. If this exceeds a couple of
-sentences, you're going too far. Generally you should be pulling this
-right from the project specification. I don't want you to just cut and
-paste, but paraphrase what is stated in the project specification.
-
 This program was simple at heart, as we were tasked with porting a program
 that is in Java, and converting it to the Go Programming Language. It uses
 Go packages, interfaces, goroutines, and channels to manage different
@@ -18,43 +13,37 @@ account types and calculate the total interest accrued.
 
 ## Reflection
 
-Write a two paragraph reflection describing your experience with this
-project.  Talk about what worked well and what was challenging.  
-Did you run into an issue that took some time to figure out?  
-Tell us about it. What did you enjoy, what was less desirable? Feel
-free to add other items (within the two paragraph limit).
+I thought this project was a good introduction to Go and helped
+me understand how concepts I knew from Java can be implemented
+differently in another language. Porting of a basic banking program was
+fairly easy once I understood how Go uses structs, interfaces,
+and packages instead of traditional Java classes and inheritance.
+
+The hardest part for me was getting everything to work correctly
+with the provided tests. I ran into smaller issues with package
+imports and output formatting, such as printing too many decimal places  
+and getting the newlines in the expected locations. Some of these problems  
+took longer to figure out than I expected, but working through them helped  
+me become more comfortable reading Go errors and debugging my code.  
+Overall, I enjoyed learning a new language and seeing how Go handles  
+object-oriented concepts, although dealing with some of the small syntax  
+and formatting differences was probably the least enjoyable part.
 
 ## Compiling and Using
 
-This section should tell the user how to compile your code.  It is
-also appropriate to instruct the user how to use your code. Does your
-program require user input? If so, what does your user need to know
-about it to use it as quickly as possible?
+To run the program you must be in the root directory of the project,
+compile the program using: go build ./...
+
+To run the program, use: go run .
 
 ## Results
 
-This section presents timing and other results of any experiments that
-you were asked to perform as part of the project.
+The provided run-tests.sh script was used to test the project and  
+verify that the program produced the expected results. I continued  
+to run the script and verify that it was matching the expected results
 
 ## Sources used
 
-If you used any sources outside of the lecture notes, class lab files,
-or text book you need to list them here. If you looked something up on
-stackoverflow.com and fail to cite it in this section it will be
-considered plagiarism and be dealt with accordingly. So be safe CITE!
-
-Finally, remove these instructions from your README.md after you are finished!
+No additional Sources were you used apart from the provided resources
 
 ----------
-
-## Notes
-
-* This README.md template is using Markdown. Here is some help on using Markdown:
-  [markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
-
-
-* Markdown can be edited and viewed natively in most IDEs such as Eclipse and VS Code. Just toggle
-  between the Markdown source and preview tabs.
-
-* To preview your README.md output online, you can copy your file contents to a Markdown editor/previewer
-  such as [https://stackedit.io/editor](https://stackedit.io/editor).
