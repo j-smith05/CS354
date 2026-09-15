@@ -3,7 +3,9 @@ package syntax;
 import java.util.*;
 
 /**
- * Lexical Analyzer for CS354 programming language
+ * Lexical Analyzer for CS354 programming language 
+ * scans a program and returns the next token in the program.
+ * @author CS354 Instructors, and Jacob Smith
  */
 public class Lexer {
 
@@ -49,16 +51,28 @@ public class Lexer {
         }
     }
 
+    /**
+     * Initializes the whitespace set with the whitespace characters.
+     * @param s
+     */
     private void initWhitespace(Set<String> s) {
         s.add(" ");
         s.add("\n");
         s.add("\t");
     }
 
+    /**
+     * Advances the position of the lexer by one character.
+     */
     private void advance() {
         this.position++;
     }
 
+    /**
+     * Returns the character at the current position of the lexer.
+     *
+     * @return the character at the current position, or null if at end of program
+     */
     private String peek() {
         if (hasChar()) {
             return program.charAt(position) + "";
@@ -67,6 +81,11 @@ public class Lexer {
         }
     }
 
+    /**
+     * Scans an identifier or keyword. Identifiers may contain letters and digits after starting with a letter.
+     * @return the scanned token, either an identifier or a keyword
+     * @throws SyntaxException if the identifier is invalid
+     */
     private Token nextKwID() {
 
         int old = this.position;
