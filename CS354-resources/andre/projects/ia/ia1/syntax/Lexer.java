@@ -10,9 +10,9 @@ public class Lexer {
     private String program;      // source program being interpreted
     private int position;        // index of next char in program
 
-
     private Set<String> whitespace = new HashSet<>();
     private Set<String> letters = new HashSet<>();
+    private Set<String> digits = new HashSet<>();
     private Set<String> keywords = new HashSet<>();
 
 
@@ -26,6 +26,7 @@ public class Lexer {
         position = 0;
         initWhitespace(whitespace);
         initLetters(letters);
+        initDigits(digits);
         initKeywords(keywords);
     }
 
@@ -36,6 +37,10 @@ public class Lexer {
     private void initLetters(Set<String> s) {
         fill(s, 'A', 'Z');
         fill(s, 'a', 'z');
+    }
+
+    private void initDigits(Set<String> s) {
+        fill(s, '0', '9');
     }
 
     private void fill(Set<String> s, char lo, char hi) {
@@ -67,7 +72,10 @@ public class Lexer {
         int old = this.position;
         advance();
 
-        while (hasChar() && letters.contains(peek())) {
+        // Identifiers may contain letters and digits after
+        // starting with a letter.
+        while (hasChar() &&
+                (letters.contains(peek()) || digits.contains(peek()))) {
             advance();
         }
 
@@ -79,6 +87,32 @@ public class Lexer {
             return new Token("id", lexeme);
     }
 
+    /**
+     * Scans an integer or floating point number.
+     */
+    private Token nextNum() {
+
+        int old = this.position;
+
+        // Read digits before the decimal point.
+        while (hasChar() && digits.contains(peek())) {
+            advance();
+        }
+
+        // Read an optional decimal point and digits after it.
+        if (hasChar() && peek().equals(".")) {
+            advance();
+
+            while (hasChar() && digits.contains(peek())) {
+                advance();
+            }
+        }
+
+        String lexeme = program.substring(old, position);
+
+        return new Token("num", lexeme);
+    }
+
 
     /**
      * Determines the kind of the next token (e.g., "id") and calls the
@@ -88,34 +122,74 @@ public class Lexer {
      */
     public Token next() {
 
+        // Skip whitespace.
         while (hasChar() && whitespace.contains(peek())) {
             advance();
         }
 
+        // End of program.
         if (!hasChar()) {
             return new Token("EOF");
-        } else if (hasChar() && letters.contains(peek())) {
-            return nextKwID();
         }
-        //	rest here!
-        else {
-            System.err.println("illegal character at position "+ position);
-            position++;
+
+        // Skip // comments.
+        if (peek().equals("/") &&
+                position + 1 < program.length() &&
+                program.charAt(position + 1) == '/') {
+
+            while (hasChar() && !peek().equals("\n")) {
+                advance();
+            }
+
             return next();
         }
+
+        // Identifier
+        if (letters.contains(peek())) {
+            return nextKwID();
+        }
+
+        // Number
+        if (digits.contains(peek()) ||
+                (peek().equals(".") &&
+                        position + 1 < program.length() &&
+                        Character.isDigit(program.charAt(position + 1)))) {
+
+            return nextNum();
+        }
+
+        // Operators
+        String operators = "+-*/;=()";
+
+        if (operators.contains(peek())) {
+            String operator = peek();
+            advance();
+
+            return new Token(operator, operator);
+        }
+
+        // Illegal character
+        System.err.println("illegal character at position " + position);
+        position++;
+
+        return next();
     }
+
 
     /**
      * Determines if the current position of the lexer is in the bounds of the
      * program
+     *
      * @return true if there are more characters in program
      */
     public boolean hasChar() {
         return position < program.length();
     }
 
+
     /**
      * Getter for position of the lexer in the program
+     *
      * @return index of the current position of the scanner
      */
     public int getPosition() {

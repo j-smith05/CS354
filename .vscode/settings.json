@@ -1,0 +1,11 @@
+{
+    "java.project.sourcePaths": [
+        "CS354-resources/andre/projects/ia/ia1",
+        "CS354-resources/andre/projects/ia/ia2",
+        "CS354-resources/andre/projects/ia/ia3",
+        "ia1"
+    ],
+    "java.project.referencedLibraries": [
+        "/Users/jesmith/Downloads/junit-platform-console-standalone-1.14.3.jar"
+    ]
+}
