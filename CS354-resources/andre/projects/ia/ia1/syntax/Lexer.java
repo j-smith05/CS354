@@ -126,9 +126,7 @@ public class Lexer {
                 advance();
             }
         }
-
         String lexeme = program.substring(old, position);
-
         return new Token("num", lexeme);
     }
 
@@ -194,7 +192,6 @@ public class Lexer {
         return next();
     }
 
-
     /**
      * Determines if the current position of the lexer is in the bounds of the
      * program
@@ -204,7 +201,6 @@ public class Lexer {
     public boolean hasChar() {
         return position < program.length();
     }
-
 
     /**
      * Getter for position of the lexer in the program
