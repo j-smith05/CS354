@@ -1,5 +1,5 @@
 ; super-duper.scm
-; Duplicates every element in a list count times.
+; Duplicates every element by the requested amount
 ; If source is not a list, it is returned unchanged.
 
 (define (super-duper source count)
