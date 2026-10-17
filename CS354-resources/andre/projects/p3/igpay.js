@@ -13,32 +13,33 @@ function translateWord(word) {
 
   const wasCapitalized = word[0] === word[0].toUpperCase();
   const wasUppercase = word === word.toUpperCase();
-  const lowerWord = word.toLowerCase();
 
   let translated = '';
 
-  if (isVowel(lowerWord[0])) {
-    translated = `${lowerWord}yay`;
+  if (isVowel(word[0])) {
+    translated = `${word}yay`;
   } else {
     let index = 0;
 
     // Find where the first vowel begins.
-    while (index < lowerWord.length && !isVowel(lowerWord[index])) {
+    while (index < word.length && !isVowel(word[index])) {
       index += 1;
     }
 
-    const beginning = lowerWord.slice(0, index);
-    const ending = lowerWord.slice(index);
+    const beginning = word.slice(0, index);
+    const ending = word.slice(index);
 
     translated = `${ending}${beginning}ay`;
   }
 
-  // Restore the original capitalization.
+  // Restore capitalization while keeping mixed-case letters.
   if (wasUppercase) {
     return translated.toUpperCase();
   }
 
   if (wasCapitalized) {
+    const movedCapital = word[0];
+    translated = translated.replace(movedCapital, movedCapital.toLowerCase());
     return translated[0].toUpperCase() + translated.slice(1);
   }
 
@@ -58,5 +59,5 @@ const rl = readline.createInterface({
 });
 
 rl.on('line', (line) => {
-  console.log(translateLine(line));
+  process.stdout.write(`${translateLine(line)}\n`);
 });
